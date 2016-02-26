@@ -2,7 +2,7 @@
   "name": "handsontable-unicode",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/handsontable-unicode.min.js",
+  "main": ["dist/handsontable-unicode.min.js", "dist/handsontable-unicode.min.css"],
   "authors": [
     "Minh Tran <vn38minhtran@gmail.com>"
   ],
