@@ -70,6 +70,8 @@ bower install --save handsontable-unicode
 </html>
 ```
 
+Press `Ctrl + Space` to open unicode character picker.
+
 ## Example
 
 ```bash
