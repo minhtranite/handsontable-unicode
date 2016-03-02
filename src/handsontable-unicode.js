@@ -45,47 +45,49 @@
       modalInner.appendChild(group);
     });
 
-    var form = document.createElement('FORM');
-    Handsontable.Dom.addClass(form, 'character-from');
-    var formInner = document.createElement('DIV');
-    Handsontable.Dom.addClass(formInner, 'character-from-inner');
-    var input = document.createElement('INPUT');
-    Handsontable.Dom.addClass(input, 'character-form-input');
-    input.setAttribute('type', 'text');
-    var preview = document.createElement('DIV');
-    Handsontable.Dom.addClass(preview, 'character-form-preview');
-    preview.style.display = 'none';
-    input.addEventListener('keyup', function (event) {
-      preview.innerHTML = event.target.value;
-      if (event.target.value.length > 0) {
-        preview.style.display = '';
-      } else {
+    if (this.cellProperties.form) {
+      var form = document.createElement('FORM');
+      Handsontable.Dom.addClass(form, 'character-from');
+      var formInner = document.createElement('DIV');
+      Handsontable.Dom.addClass(formInner, 'character-from-inner');
+      var input = document.createElement('INPUT');
+      Handsontable.Dom.addClass(input, 'character-form-input');
+      input.setAttribute('type', 'text');
+      var preview = document.createElement('DIV');
+      Handsontable.Dom.addClass(preview, 'character-form-preview');
+      preview.style.display = 'none';
+      input.addEventListener('keyup', function (event) {
+        preview.innerHTML = event.target.value;
+        if (event.target.value.length > 0) {
+          preview.style.display = '';
+        } else {
+          preview.style.display = 'none';
+        }
+      });
+      input.addEventListener('blur', function () {
         preview.style.display = 'none';
-      }
-    });
-    input.addEventListener('blur', function () {
-      preview.style.display = 'none';
-    });
-    var buttonWrapper = document.createElement('DIV');
-    Handsontable.Dom.addClass(buttonWrapper, 'character-form-button');
-    var button = document.createElement('BUTTON');
-    button.setAttribute('type', 'submit');
-    button.innerHTML = 'Submit';
-    buttonWrapper.appendChild(button);
-    formInner.appendChild(input);
-    formInner.appendChild(buttonWrapper);
-    formInner.appendChild(preview);
-    form.appendChild(formInner);
-    modalInner.appendChild(form);
+      });
+      var buttonWrapper = document.createElement('DIV');
+      Handsontable.Dom.addClass(buttonWrapper, 'character-form-button');
+      var button = document.createElement('BUTTON');
+      button.setAttribute('type', 'submit');
+      button.innerHTML = 'Submit';
+      buttonWrapper.appendChild(button);
+      formInner.appendChild(input);
+      formInner.appendChild(buttonWrapper);
+      formInner.appendChild(preview);
+      form.appendChild(formInner);
+      modalInner.appendChild(form);
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      self.setValue(self.getValue() + preview.innerHTML);
-      self.refreshDimensions();
-      input.value = '';
-      preview.innerHTML = '';
-      preview.style.display = 'none';
-    });
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        self.setValue(self.getValue() + preview.innerHTML);
+        self.refreshDimensions();
+        input.value = '';
+        preview.innerHTML = '';
+        preview.style.display = 'none';
+      });
+    }
 
     Handsontable.Dom.empty(this.unicodeModal);
     this.unicodeModal.appendChild(modalInner);
