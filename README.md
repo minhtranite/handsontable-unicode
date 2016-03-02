@@ -39,6 +39,7 @@ bower install --save handsontable-unicode
         {},
         {
           type: 'unicode',
+          form: true, // true to show form, false to hide form, default true
           characters: [
             {
               name: 'Group 1',
